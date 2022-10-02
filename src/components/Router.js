@@ -1,18 +1,25 @@
-import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../routes/Home";
-import Auth from "../routes/Auth";
+import React from "react";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import Home from "routes/Home";
+import Auth from "routes/Auth";
+import Profile from "routes/Profile";
+import Navigatioin from "components/Navigation";
 
-function AppRouter() {
-  const [isLoggedIn, setIsLogggedIn] = useState(false);
-
+function AppRouter({ isLoggedIn }) {
   return (
     <BrowserRouter>
+      {isLoggedIn && <Navigatioin />}
       <Routes>
         {isLoggedIn ? (
-          <Route path="/" element={<Home />} />
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+          </>
         ) : (
-          <Route path="/" element={<Auth />} />
+          <>
+            <Route path="/" element={<Auth />} />
+            <Route path="*" element={<Navigate replace to="/" />} />
+          </>
         )}
         <Route />
       </Routes>
