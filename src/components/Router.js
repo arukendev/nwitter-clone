@@ -5,14 +5,14 @@ import Auth from "routes/Auth";
 import Profile from "routes/Profile";
 import Navigatioin from "components/Navigation";
 
-function AppRouter({ isLoggedIn }) {
+function AppRouter({ isLoggedIn, userObj }) {
   return (
     <BrowserRouter>
       {isLoggedIn && <Navigatioin />}
       <Routes>
         {isLoggedIn ? (
           <>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home userObj={userObj} />} />
             <Route path="/profile" element={<Profile />} />
           </>
         ) : (
