@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navigatioin() {
+function Navigatioin({ userObj }) {
+  console.log(userObj);
   return (
     <nav>
       <ul>
@@ -9,7 +10,7 @@ function Navigatioin() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/profile">My Profile</Link>
+          <Link to="/profile">{userObj.displayName}'s Profile</Link>
         </li>
       </ul>
     </nav>
